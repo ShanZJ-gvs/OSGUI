@@ -1,4 +1,5 @@
-import java.awt.*;
+package Gui;
+
 import java.util.*;
 
 /**
@@ -8,49 +9,45 @@ import java.util.*;
  * @Date 2020/5/30 10:46
  * @Version 1.0
  */
-public class OS {
+public class MSFQS {
     /*三个队列*/
-    static Queue<Progress> firstQueue = new LinkedList<>();
-    static Queue<Progress> secondQueue = new LinkedList<>();
-    static Queue<Progress> thirdQueue = new LinkedList<>();
-    static int firstTime;  //第一队列cpu时间片
-    static int secondTime; //第二队列cpu时间片
-    static int thirdTime;  //第三队列cpu时间片
-    static int proNum;     //进程数量
-    static Progress[] pro;//获取到进程数组
-    static int i = 0;
-    static ArrayList<AllInOne> AOO;
-
-
+    private static Queue<Progress> firstQueue = new LinkedList<>();
+    private static Queue<Progress> secondQueue = new LinkedList<>();
+    private static Queue<Progress> thirdQueue = new LinkedList<>();
+    private static int firstTime;  //第一队列cpu时间片
+    private static int secondTime; //第二队列cpu时间片
+    private static int thirdTime;  //第三队列cpu时间片
+    private static int proNum;     //进程数量
+    private static Scanner sc = new Scanner(System.in);
 
     /**
      * 内部进程类：模拟进程
      */
-/*    final static class Progress implements Comparable<Progress> {
+    private static class Progress implements Comparable<Progress> {
         String id;     //进程标识符
         int reachTime; //到达时间
         int cpuTime;   //运行时间
         int needTime;  //仍需时间
         char state;    //进程状态
 
-        *//*重排输出格式*//*
+        /*重排输出格式*/
         @Override
         public String toString() {
             System.out.println();
             return String.format("进程%s: %10d %7d %8d %7c\n", id, reachTime, cpuTime, needTime, state);
         }
 
-        *//*重写比较器*//*
+        /*重写比较器*/
         @Override
         public int compareTo( Progress b ) {
             //按reachTime从小到大排序
             return Float.compare(reachTime, b.reachTime);
         }
-    }*/
+    }
     /**
      * 进程调度算法：Multi-stage feedback queue scheduling algorithm
      */
-    static void progressScheduling(Progress[] pro){
+    private static void progressScheduling(Progress[] pro){
         int firstCpu = firstTime;
         int secondCpu = secondTime;
         int thirdCpu = thirdTime;
@@ -152,42 +149,40 @@ public class OS {
                 }
             }
         }
-        System.out.println(AOO);
     }
 
     /**
      * 输入面板：获取到进程数组
      */
-    static Progress[] operator(int a,int b){
+    private static Progress[] operator(){
         System.out.println("-----------------3118004950 柴政-----------------\n");
         System.out.println("欢迎进入多级队列反馈调度模拟系统，队列个数：3。\n\n");
         System.out.println("请按队列优先级从高到低的顺序输入各个队列的时间片长度：");
-        /*firstTime = sc.nextInt();
+        firstTime = sc.nextInt();
         secondTime = sc.nextInt();
-        thirdTime = sc.nextInt();*/
+        thirdTime = sc.nextInt();
         System.out.print( "请输入进程数:" );
-        /*proNum = sc.nextInt();*/
+        proNum = sc.nextInt();
 
         /*获取到进程数组*/
-        //pro = new Progress[proNum];
+        Progress[] pro = new Progress[proNum];
         System.out.println( "请依次输入进程标识符,进程到达时间,进程运行时间:" );
-        //for( int i = 0; i < proNum; i++ ) {
+        for( int i = 0; i < proNum; i++ ) {
             pro[i] = new Progress();
-            pro[i].id = "A";
-            pro[i].reachTime = a;
-            pro[i].cpuTime = b;
+            pro[i].id = sc.next();
+            pro[i].reachTime = sc.nextInt();
+            pro[i].cpuTime = sc.nextInt();
             pro[i].needTime = pro[i].cpuTime;
             pro[i].state = 'R';
-            i++;
-        //}
+        }
         //对进程按照compareTo()的要求按照到达时间排序
-        //Arrays.sort(pro);
+        Arrays.sort(pro);
         return pro;
     }
     /**
      * 输出面板：实时输出运行结果
      */
-    /*private static void viewMenu(int currentTime){
+    private static void viewMenu(int currentTime){
         System.out.printf("\n当前时刻：%d\n",currentTime);
         System.out.println("---------------------------------------------");
         System.out.println("            到达时间 运行时间  剩余时间  状态");
@@ -204,58 +199,13 @@ public class OS {
                 .replace("[", "").replace("]", "")
                 .replace(", ", ""));
         System.out.println("=============================================");
-    }*/
-
-
-    private static void viewMenu(int currentTime){
-        System.out.printf("\n当前时刻：%d\n",currentTime);
-        System.out.println("---------------------------------------------");
-        System.out.println("            到达时间 运行时间  剩余时间  状态");
-        if(firstQueue.isEmpty()) System.out.println("队列一：空");
-        else {
-            String str = "队列一：\n"+ firstQueue.toString()
-                    .replace("[", "").replace("]", "")
-                    .replace(", ", "");
-            System.out.println(str);
-
-            AOO.add(new AllInOne(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
-                    firstQueue.peek().needTime,firstQueue.peek().state));
-
-            /*AOO.id = firstQueue.peek().id;
-            AOO.reachTime = firstQueue.peek().reachTime;
-            AOO.cpuTime =  firstQueue.peek().cpuTime;
-            AOO.needTime =  firstQueue.peek().needTime;
-            AOO.state =    firstQueue.peek().state;*/
-            //g2.drawLine(50+AOO.reachTime,150,50+AOO.reachTime+AOO.cpuTime,150);
-
-        }
-        if(secondQueue.isEmpty()) System.out.println("队列二：空");
-        else {
-            System.out.println("队列二：\n"+ secondQueue.toString()
-                    .replace("[", "").replace("]", "")
-                    .replace(", ", ""));
-            AOO.add(new AllInOne(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
-                    firstQueue.peek().needTime,firstQueue.peek().state));
-        }
-
-        if(thirdQueue.isEmpty()) System.out.println("队列三：空");
-        else {
-            System.out.println("队列三：\n"+ thirdQueue.toString()
-                    .replace("[", "").replace("]", "")
-                    .replace(", ", ""));
-            AOO.add(new AllInOne(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
-                    firstQueue.peek().needTime,firstQueue.peek().state));
-        }
-        System.out.println("=============================================");
     }
 
     /**
      * main()
      */
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         progressScheduling(operator());
-    }*/
-
-
+    }
 }
 

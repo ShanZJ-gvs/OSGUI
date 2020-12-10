@@ -11,7 +11,10 @@ public class MyFrame extends JFrame {
 
         MyMenu myMenu = new MyMenu();
         setJMenuBar(myMenu);
-        add(new MyComponent());
+        MyComponent myComponent = new MyComponent();
+        //将两个组件的OS对象统一
+        myComponent.os = myMenu.os;
+        add(myComponent);
         pack();
     }
 

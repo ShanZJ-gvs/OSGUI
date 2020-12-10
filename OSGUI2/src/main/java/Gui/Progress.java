@@ -1,3 +1,5 @@
+package Gui;
+
 public class Progress implements Comparable<Progress>{
     String id;     //进程标识符
     int reachTime; //到达时间

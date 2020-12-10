@@ -1,5 +1,11 @@
+package Gui;
+
+import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Queue;
 
 /**
  * @Class MSFQS
@@ -8,7 +14,7 @@ import java.util.*;
  * @Date 2020/5/30 10:46
  * @Version 1.0
  */
-public class OS {
+public class OS extends JComponent {
     /*三个队列*/
     static Queue<Progress> firstQueue = new LinkedList<>();
     static Queue<Progress> secondQueue = new LinkedList<>();
@@ -22,35 +28,10 @@ public class OS {
     static ArrayList<AllInOne> AOO;
 
 
-
-    /**
-     * 内部进程类：模拟进程
-     */
-/*    final static class Progress implements Comparable<Progress> {
-        String id;     //进程标识符
-        int reachTime; //到达时间
-        int cpuTime;   //运行时间
-        int needTime;  //仍需时间
-        char state;    //进程状态
-
-        *//*重排输出格式*//*
-        @Override
-        public String toString() {
-            System.out.println();
-            return String.format("进程%s: %10d %7d %8d %7c\n", id, reachTime, cpuTime, needTime, state);
-        }
-
-        *//*重写比较器*//*
-        @Override
-        public int compareTo( Progress b ) {
-            //按reachTime从小到大排序
-            return Float.compare(reachTime, b.reachTime);
-        }
-    }*/
     /**
      * 进程调度算法：Multi-stage feedback queue scheduling algorithm
      */
-    static void progressScheduling(Progress[] pro){
+    static void progressScheduling(Progress[] pro,Graphics2D g2){
         int firstCpu = firstTime;
         int secondCpu = secondTime;
         int thirdCpu = thirdTime;
@@ -63,7 +44,7 @@ public class OS {
             while(num < proNum && pro[num].reachTime == currentTime)
                 firstQueue.offer(pro[num++]);
             //打印上一秒各队列进程状态
-            viewMenu(currentTime);
+            viewMenu(currentTime,g2);
             /*当前为队列1在运行进程*/
             if(!firstQueue.isEmpty()){
                 if (secondQueue.peek() != null) secondQueue.peek().state = 'R';
@@ -158,7 +139,7 @@ public class OS {
     /**
      * 输入面板：获取到进程数组
      */
-    static Progress[] operator(int a,int b){
+    static Progress[] operator(int a, int b){
         System.out.println("-----------------3118004950 柴政-----------------\n");
         System.out.println("欢迎进入多级队列反馈调度模拟系统，队列个数：3。\n\n");
         System.out.println("请按队列优先级从高到低的顺序输入各个队列的时间片长度：");
@@ -187,27 +168,7 @@ public class OS {
     /**
      * 输出面板：实时输出运行结果
      */
-    /*private static void viewMenu(int currentTime){
-        System.out.printf("\n当前时刻：%d\n",currentTime);
-        System.out.println("---------------------------------------------");
-        System.out.println("            到达时间 运行时间  剩余时间  状态");
-        if(firstQueue.isEmpty()) System.out.println("队列一：空");
-        else System.out.println("队列一：\n"+ firstQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        if(secondQueue.isEmpty()) System.out.println("队列二：空");
-        else System.out.println("队列二：\n"+ secondQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        if(thirdQueue.isEmpty()) System.out.println("队列三：空");
-        else System.out.println("队列三：\n"+ thirdQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        System.out.println("=============================================");
-    }*/
-
-
-    private static void viewMenu(int currentTime){
+    private static void viewMenu(int currentTime,Graphics2D g2){
         System.out.printf("\n当前时刻：%d\n",currentTime);
         System.out.println("---------------------------------------------");
         System.out.println("            到达时间 运行时间  剩余时间  状态");
@@ -220,6 +181,7 @@ public class OS {
 
             AOO.add(new AllInOne(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
                     firstQueue.peek().needTime,firstQueue.peek().state));
+            g2.drawLine(50,100,150,100);
 
             /*AOO.id = firstQueue.peek().id;
             AOO.reachTime = firstQueue.peek().reachTime;
@@ -247,6 +209,35 @@ public class OS {
                     firstQueue.peek().needTime,firstQueue.peek().state));
         }
         System.out.println("=============================================");
+    }
+
+
+    public void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        System.out.println(2222);
+        g2.setStroke(new BasicStroke(2.0f));
+        //第一个点
+        int start =50;
+        int end = 100;
+        for (int i = 0; i < 14; i++) {
+            g2.drawLine(start,100,end,100);
+            start = end;
+            end = end+50;
+        }
+        for (int i = 0; i < 13; i++) {
+            g2.drawLine(start-50,100,start-50,90);
+            g2.drawString(String.valueOf(start-50),start-50,80);
+            start = start -50;
+        }
+        g2.drawLine(start-50,100,start-50,400);
+        g2.drawString("p1",30,150);
+        g2.drawString("p2",30,200);
+        g2.drawString("p3",30,250);
+        g2.drawString("p4",30,300);
+        g2.drawString("p5",30,350);
+
+        progressScheduling(pro,g2);
+
     }
 
     /**
