@@ -6,7 +6,6 @@ import java.awt.geom.RectangularShape;
 import java.util.Objects;
 
 public class MyComponent extends JComponent {
-    static OS os;
 
     public MyComponent() {
 
@@ -37,27 +36,7 @@ public class MyComponent extends JComponent {
         g2.drawString("p4",30,300);
         g2.drawString("p5",30,350);
 
-
     }
 
-    /*private static void viewMenu(int currentTime){
-        System.out.printf("\n当前时刻：%d\n",currentTime);
-        System.out.println("---------------------------------------------");
-        System.out.println("            到达时间 运行时间  剩余时间  状态");
-        if(os.firstQueue.isEmpty()) System.out.println("队列一：空");
-        else System.out.println("队列一：\n"+ os.firstQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        if(os.secondQueue.isEmpty()) System.out.println("队列二：空");
-        else System.out.println("队列二：\n"+ os.secondQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        if(os.thirdQueue.isEmpty()) System.out.println("队列三：空");
-        else System.out.println("队列三：\n"+ os.thirdQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        System.out.println("=============================================");
-    }
-*/
 
 }

@@ -1,7 +1,7 @@
 package Gui;
 
 public class AllInOne {
-    static String id;
+    static int id;
     static int reachTime;
     static int cpuTime;
     static int needTime;
@@ -12,7 +12,7 @@ public class AllInOne {
 
 
 
-    public AllInOne(String id, int reachTime, int cpuTime, int needTime, char state) {
+    public AllInOne(int id, int reachTime, int cpuTime, int needTime, char state) {
         this.id = id;
         this.reachTime = reachTime;
         this.cpuTime = cpuTime;

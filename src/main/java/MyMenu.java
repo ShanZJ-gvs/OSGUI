@@ -11,9 +11,6 @@ public class MyMenu extends JMenuBar {
     private JTextField two;//第二个文本框的内容
     static OS os;
 
-
-
-
     public MyMenu() {
         /**
          * 用户添加进程的ui  对应两个输入框和两个标签
@@ -61,6 +58,7 @@ public class MyMenu extends JMenuBar {
 
     }
 
+
     /**
      * 对应添加进程按钮按下后执行的进程
      */
@@ -77,6 +75,7 @@ public class MyMenu extends JMenuBar {
             os.thirdTime = 8;
             os.proNum = 5;
             os.pro = new Progress[os.proNum];
+            os.AOO = new ArrayList<AllInOne>();
 
         }
 

@@ -152,6 +152,7 @@ public class OS {
                 }
             }
         }
+        System.out.print(AOO.size());
         System.out.println(AOO);
     }
 
@@ -173,7 +174,7 @@ public class OS {
         System.out.println( "请依次输入进程标识符,进程到达时间,进程运行时间:" );
         //for( int i = 0; i < proNum; i++ ) {
             pro[i] = new Progress();
-            pro[i].id = "A";
+            pro[i].id = i+1;
             pro[i].reachTime = a;
             pro[i].cpuTime = b;
             pro[i].needTime = pro[i].cpuTime;
@@ -187,26 +188,6 @@ public class OS {
     /**
      * 输出面板：实时输出运行结果
      */
-    /*private static void viewMenu(int currentTime){
-        System.out.printf("\n当前时刻：%d\n",currentTime);
-        System.out.println("---------------------------------------------");
-        System.out.println("            到达时间 运行时间  剩余时间  状态");
-        if(firstQueue.isEmpty()) System.out.println("队列一：空");
-        else System.out.println("队列一：\n"+ firstQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        if(secondQueue.isEmpty()) System.out.println("队列二：空");
-        else System.out.println("队列二：\n"+ secondQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        if(thirdQueue.isEmpty()) System.out.println("队列三：空");
-        else System.out.println("队列三：\n"+ thirdQueue.toString()
-                .replace("[", "").replace("]", "")
-                .replace(", ", ""));
-        System.out.println("=============================================");
-    }*/
-
-
     private static void viewMenu(int currentTime){
         System.out.printf("\n当前时刻：%d\n",currentTime);
         System.out.println("---------------------------------------------");
@@ -234,8 +215,8 @@ public class OS {
             System.out.println("队列二：\n"+ secondQueue.toString()
                     .replace("[", "").replace("]", "")
                     .replace(", ", ""));
-            AOO.add(new AllInOne(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
-                    firstQueue.peek().needTime,firstQueue.peek().state));
+            AOO.add(new AllInOne(secondQueue.peek().id,secondQueue.peek().reachTime,secondQueue.peek().cpuTime,
+                    secondQueue.peek().needTime,secondQueue.peek().state));
         }
 
         if(thirdQueue.isEmpty()) System.out.println("队列三：空");
@@ -243,18 +224,12 @@ public class OS {
             System.out.println("队列三：\n"+ thirdQueue.toString()
                     .replace("[", "").replace("]", "")
                     .replace(", ", ""));
-            AOO.add(new AllInOne(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
-                    firstQueue.peek().needTime,firstQueue.peek().state));
+            AOO.add(new AllInOne(thirdQueue.peek().id,thirdQueue.peek().reachTime,thirdQueue.peek().cpuTime,
+                    thirdQueue.peek().needTime,thirdQueue.peek().state));
         }
         System.out.println("=============================================");
     }
 
-    /**
-     * main()
-     */
-    /*public static void main(String[] args) {
-        progressScheduling(operator());
-    }*/
 
 
 }

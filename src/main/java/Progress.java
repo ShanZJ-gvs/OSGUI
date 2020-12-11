@@ -1,5 +1,5 @@
 public class Progress implements Comparable<Progress>{
-    String id;     //进程标识符
+    int id;     //进程标识符
     int reachTime; //到达时间
     int cpuTime;   //运行时间
     int needTime;  //仍需时间
