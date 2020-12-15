@@ -8,7 +8,7 @@ import java.util.*;
  * @Date 2020/5/30 10:46
  * @Version 1.0
  */
-public class OS {
+public class OS{
     /*三个队列*/
     static Queue<Progress> firstQueue = new LinkedList<>();
     static Queue<Progress> secondQueue = new LinkedList<>();
@@ -20,6 +20,7 @@ public class OS {
     static Progress[] pro;//获取到进程数组
     static int i = 0;
     static ArrayList<Progress> AOO;
+    static MyComponent myComponent;
 
 
 
@@ -81,7 +82,7 @@ public class OS {
                     if(firstTime == 0) {
                         firstQueue.peek().state = 'R';
                         AOO.add(new Progress(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
-                                firstQueue.peek().needTime,firstQueue.peek().state,2,0));
+                                firstQueue.peek().needTime,firstQueue.peek().state,2,currentTime));
                         secondQueue.offer(firstQueue.poll());
                         firstTime = firstCpu;
                     }
@@ -125,7 +126,7 @@ public class OS {
                     if(secondTime == 0) {
                         secondQueue.peek().state = 'R';
                         AOO.add(new Progress(secondQueue.peek().id,secondQueue.peek().reachTime,secondQueue.peek().cpuTime,
-                                secondQueue.peek().needTime,secondQueue.peek().state,3,0));
+                                secondQueue.peek().needTime,secondQueue.peek().state,3,currentTime));
                         thirdQueue.offer(secondQueue.poll());
                         secondTime = secondCpu;
                     }
@@ -147,7 +148,7 @@ public class OS {
                     if(thirdTime == 0) {
                         thirdQueue.peek().state = 'R';
                         AOO.add(new Progress(thirdQueue.peek().id,thirdQueue.peek().reachTime,thirdQueue.peek().cpuTime,
-                                thirdQueue.peek().needTime,thirdQueue.peek().state,3,0));
+                                thirdQueue.peek().needTime,thirdQueue.peek().state,3,currentTime));
                         thirdQueue.offer(thirdQueue.poll());
                         thirdTime = thirdCpu;
                     }
@@ -164,6 +165,7 @@ public class OS {
                 }
             }
         }
+        myComponent.repaint();
         System.out.print(AOO.size());
         System.out.println(AOO);
     }
@@ -234,7 +236,6 @@ public class OS {
         }
         System.out.println("=============================================");
     }
-
 
 
 }

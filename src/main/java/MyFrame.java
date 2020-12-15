@@ -10,9 +10,10 @@ public class MyFrame extends JFrame {
     public MyFrame() {
 
         MyMenu myMenu = new MyMenu();
+        MyComponent myComponent = new MyComponent();
+        myMenu.myComponent = myComponent;
         setJMenuBar(myMenu);
 
-        MyComponent myComponent = new MyComponent();
         myComponent.myMenu = myMenu;
 
         add(myComponent);

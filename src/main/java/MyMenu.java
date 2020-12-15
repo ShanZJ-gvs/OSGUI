@@ -10,6 +10,7 @@ public class MyMenu extends JMenuBar {
     private JTextField one;//第一文本框的内容
     private JTextField two;//第二个文本框的内容
     static OS os;
+    MyComponent myComponent;
 
     public static OS getOs() {
         return os;
@@ -80,9 +81,9 @@ public class MyMenu extends JMenuBar {
         public addAction()
         {
             os = new OS();
-            os.firstTime = 2;
-            os.secondTime = 4;
-            os.thirdTime = 8;
+            os.firstTime = 200;
+            os.secondTime = 400;
+            os.thirdTime = 800;
             os.proNum = 5;
             os.pro = new Progress[os.proNum];
             os.AOO = new ArrayList<Progress>();
@@ -110,6 +111,7 @@ public class MyMenu extends JMenuBar {
         {
             System.out.println(11);
             Arrays.sort(os.pro);
+            os.myComponent = myComponent;
             os.progressScheduling(os.pro);
             System.out.println(os);
         }
