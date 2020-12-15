@@ -19,7 +19,7 @@ public class OS {
     static int proNum;     //进程数量
     static Progress[] pro;//获取到进程数组
     static int i = 0;
-    static ArrayList<AllInOne> AOO;
+    static ArrayList<Progress> AOO;
 
 
 
@@ -80,6 +80,8 @@ public class OS {
                     //当前队列CPU时间片用完而进程仍未运行完时，进程出队，入次优先级队尾
                     if(firstTime == 0) {
                         firstQueue.peek().state = 'R';
+                        AOO.add(new Progress(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
+                                firstQueue.peek().needTime,firstQueue.peek().state,2,0));
                         secondQueue.offer(firstQueue.poll());
                         firstTime = firstCpu;
                     }
@@ -89,6 +91,8 @@ public class OS {
                 else if(firstQueue.peek().needTime == 0){
                     firstQueue.peek().state = 'F';
                     System.out.printf("\n当前时刻：%d,此进程运行结束：\n",currentTime);
+                    AOO.add(new Progress(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
+                            firstQueue.peek().needTime,firstQueue.peek().state,1,currentTime));
                     System.out.println(firstQueue.peek());
                     Objects.requireNonNull(firstQueue.poll());
                     firstTime = firstCpu;
@@ -109,6 +113,8 @@ public class OS {
                     secondTime = secondCpu;
                     secondQueue.peek().state = 'F';
                     System.out.printf("\n当前时刻：%d,此进程运行结束：\n",currentTime);
+                    AOO.add(new Progress(secondQueue.peek().id,secondQueue.peek().reachTime,secondQueue.peek().cpuTime,
+                            secondQueue.peek().needTime,secondQueue.peek().state,2,currentTime));
                     System.out.println(secondQueue.peek());
                     Objects.requireNonNull(secondQueue.poll());
                 }
@@ -118,6 +124,8 @@ public class OS {
                     //当前队列CPU时间片用完而进程仍未运行完时，进程出队，入次优先级队尾
                     if(secondTime == 0) {
                         secondQueue.peek().state = 'R';
+                        AOO.add(new Progress(secondQueue.peek().id,secondQueue.peek().reachTime,secondQueue.peek().cpuTime,
+                                secondQueue.peek().needTime,secondQueue.peek().state,3,0));
                         thirdQueue.offer(secondQueue.poll());
                         secondTime = secondCpu;
                     }
@@ -138,6 +146,8 @@ public class OS {
                     //当前队列CPU时间片用完而进程仍未运行完时，进程出队，入次优先级队尾
                     if(thirdTime == 0) {
                         thirdQueue.peek().state = 'R';
+                        AOO.add(new Progress(thirdQueue.peek().id,thirdQueue.peek().reachTime,thirdQueue.peek().cpuTime,
+                                thirdQueue.peek().needTime,thirdQueue.peek().state,3,0));
                         thirdQueue.offer(thirdQueue.poll());
                         thirdTime = thirdCpu;
                     }
@@ -147,6 +157,8 @@ public class OS {
                     firstTime = firstCpu;
                     thirdQueue.peek().state = 'F';
                     System.out.printf("\n当前时刻：%d,此进程运行结束：\n",currentTime);
+                    AOO.add(new Progress(thirdQueue.peek().id,thirdQueue.peek().reachTime,thirdQueue.peek().cpuTime,
+                            thirdQueue.peek().needTime,thirdQueue.peek().state,3,currentTime));
                     System.out.println(thirdQueue.peek());
                     Objects.requireNonNull(thirdQueue.poll());
                 }
@@ -179,6 +191,9 @@ public class OS {
             pro[i].cpuTime = b;
             pro[i].needTime = pro[i].cpuTime;
             pro[i].state = 'R';
+            pro[i].queue = 0;
+            pro[i].closeTime = 0;
+
             i++;
         //}
         //对进程按照compareTo()的要求按照到达时间排序
@@ -199,15 +214,8 @@ public class OS {
                     .replace(", ", "");
             System.out.println(str);
 
-            AOO.add(new AllInOne(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
-                    firstQueue.peek().needTime,firstQueue.peek().state));
 
-            /*AOO.id = firstQueue.peek().id;
-            AOO.reachTime = firstQueue.peek().reachTime;
-            AOO.cpuTime =  firstQueue.peek().cpuTime;
-            AOO.needTime =  firstQueue.peek().needTime;
-            AOO.state =    firstQueue.peek().state;*/
-            //g2.drawLine(50+AOO.reachTime,150,50+AOO.reachTime+AOO.cpuTime,150);
+
 
         }
         if(secondQueue.isEmpty()) System.out.println("队列二：空");
@@ -215,8 +223,7 @@ public class OS {
             System.out.println("队列二：\n"+ secondQueue.toString()
                     .replace("[", "").replace("]", "")
                     .replace(", ", ""));
-            AOO.add(new AllInOne(secondQueue.peek().id,secondQueue.peek().reachTime,secondQueue.peek().cpuTime,
-                    secondQueue.peek().needTime,secondQueue.peek().state));
+
         }
 
         if(thirdQueue.isEmpty()) System.out.println("队列三：空");
@@ -224,8 +231,6 @@ public class OS {
             System.out.println("队列三：\n"+ thirdQueue.toString()
                     .replace("[", "").replace("]", "")
                     .replace(", ", ""));
-            AOO.add(new AllInOne(thirdQueue.peek().id,thirdQueue.peek().reachTime,thirdQueue.peek().cpuTime,
-                    thirdQueue.peek().needTime,thirdQueue.peek().state));
         }
         System.out.println("=============================================");
     }

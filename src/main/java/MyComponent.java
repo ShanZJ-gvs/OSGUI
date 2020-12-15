@@ -3,9 +3,12 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MyComponent extends JComponent {
+
+    MyMenu myMenu;
 
     public MyComponent() {
 
@@ -14,6 +17,8 @@ public class MyComponent extends JComponent {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+
+        g2.setFont(new Font("宋体", Font.BOLD,16));
         System.out.println(2222);
         g2.setStroke(new BasicStroke(2.0f));
         //第一个点
@@ -35,8 +40,24 @@ public class MyComponent extends JComponent {
         g2.drawString("p3",30,250);
         g2.drawString("p4",30,300);
         g2.drawString("p5",30,350);
+        //paintTable(g2);
 
     }
+
+
+    public void paintTable(Graphics2D g2) {
+        System.out.println(2222222);
+        g2.setStroke(new BasicStroke(2.0f));
+        //第一个点
+        int start =50;
+        int end = 100;
+
+
+        final ArrayList<Progress> aoo = myMenu.getOs().AOO;
+
+    }
+
+
 
 
 }

@@ -11,6 +11,10 @@ public class MyMenu extends JMenuBar {
     private JTextField two;//第二个文本框的内容
     static OS os;
 
+    public static OS getOs() {
+        return os;
+    }
+
     public MyMenu() {
         /**
          * 用户添加进程的ui  对应两个输入框和两个标签
@@ -22,6 +26,10 @@ public class MyMenu extends JMenuBar {
         //设置组件的长度
         one.setColumns(10);
         two.setColumns(10);
+        one.setFont(new Font("宋体", Font.BOLD,16));
+        two.setFont(new Font("宋体", Font.BOLD,16));
+        oneLab.setFont(new Font("宋体", Font.BOLD,16));
+        twoLab.setFont(new Font("宋体", Font.BOLD,16));
         add(oneLab);
         add(one);
         add(twoLab);
@@ -31,6 +39,7 @@ public class MyMenu extends JMenuBar {
          * 对应添加进程按钮
          */
         JButton button1 = new JButton("添加进程");
+        button1.setFont(new Font("宋体", Font.BOLD,16));
         addAction action1 = new addAction();
         button1.addActionListener(action1);
         add(button1);
@@ -39,6 +48,7 @@ public class MyMenu extends JMenuBar {
          * 对应开始按钮
          */
         JButton button3 = new JButton("开始");
+        button3.setFont(new Font("宋体", Font.BOLD,16));
         start action2 = new start();
         button3.addActionListener(action2);
         add(button3);
@@ -75,7 +85,7 @@ public class MyMenu extends JMenuBar {
             os.thirdTime = 8;
             os.proNum = 5;
             os.pro = new Progress[os.proNum];
-            os.AOO = new ArrayList<AllInOne>();
+            os.AOO = new ArrayList<Progress>();
 
         }
 
