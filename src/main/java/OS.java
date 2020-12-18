@@ -48,8 +48,17 @@ public class OS{
             return Float.compare(reachTime, b.reachTime);
         }
     }*/
+
+
     /**
-     * 进程调度算法：Multi-stage feedback queue scheduling algorithm
+     * 重新绘画
+     */
+    static void reload() {
+            myComponent.repaint();
+    }
+
+    /**
+     * 进程调度
      */
     static void progressScheduling(Progress[] pro){
         int firstCpu = firstTime;
@@ -165,13 +174,15 @@ public class OS{
                 }
             }
         }
-        for(int i = 1; i <= AOO.size();i++) {
+        for(int i = 0; i <= AOO.size();i++) {
             myComponent.index = i;
+            myComponent.slice = i/10;
+
             System.out.println("hello"+i);
             myComponent.paintComponent(myComponent.getGraphics());
             try {
                 System.out.println("hello1");
-                Thread.sleep(100);
+                Thread.sleep(300);
                 System.out.println("hello2");
             } catch (InterruptedException e) {
                 e.printStackTrace();

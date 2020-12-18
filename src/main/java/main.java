@@ -8,7 +8,7 @@ public class main extends Thread{
         EventQueue.invokeLater(() -> {
             JFrame frame = new MyFrame();
             frame.setTitle("多级反馈队列调度算法");
-            frame.setSize(1000, 500);
+            frame.setSize(1200, 900);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
         });
