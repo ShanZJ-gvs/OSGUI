@@ -165,7 +165,18 @@ public class OS{
                 }
             }
         }
-        myComponent.repaint();
+        for(int i = 1; i <= AOO.size();i++) {
+            myComponent.index = i;
+            System.out.println("hello"+i);
+            myComponent.paintComponent(myComponent.getGraphics());
+            try {
+                System.out.println("hello1");
+                Thread.sleep(100);
+                System.out.println("hello2");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         System.out.print(AOO.size());
         System.out.println(AOO);
     }

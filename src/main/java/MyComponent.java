@@ -9,6 +9,7 @@ import java.util.Objects;
 public class MyComponent extends JComponent {
 
     MyMenu myMenu;
+    public int index;
 
     public MyComponent() {
 
@@ -17,7 +18,7 @@ public class MyComponent extends JComponent {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-
+        System.out.println("hello comp"+index);
         g2.setFont(new Font("宋体", Font.BOLD,16));
         System.out.println(2222);
         g2.setStroke(new BasicStroke(2.0f));
@@ -57,7 +58,7 @@ public class MyComponent extends JComponent {
 
         ArrayList<Progress> aoo = myMenu.getOs().AOO;
 
-        for (int i = 0; i < aoo.size(); i++) {
+        for (int i = 0; i < this.index; i++) {
             if (i==0){
                 int x2 = start+aoo.get(i).getCloseTime()/2;
                 int y = 100+aoo.get(i).getId()*50;
