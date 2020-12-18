@@ -24,8 +24,8 @@ public class MyMenu extends JMenuBar {
          */
         JLabel oneLab = new JLabel("到达时间:");
         JLabel twoLab = new JLabel("服务时间:");
-        one = new JTextField(10);
-        two = new JTextField("100",10);
+        one = new JTextField("0",10);
+        two = new JTextField("0",10);
         //设置组件的长度
         one.setColumns(10);
         two.setColumns(10);
@@ -98,58 +98,54 @@ public class MyMenu extends JMenuBar {
         public void actionPerformed(ActionEvent event)
         {
 
-            /*debug*/
+            /*///////*/
 
-                os.pro[0] = new Progress();
-                os.pro[0].id = 1;
-                os.pro[0].reachTime = 0;
-                os.pro[0].cpuTime = 400;
-                os.pro[0].needTime = os.pro[0].cpuTime;
-                os.pro[0].state = 'R';
-                os.pro[0].queue = 0;
-                os.pro[0].closeTime = 0;
+            os.pro[0] = new Progress();
+            os.pro[0].id = 1;
+            os.pro[0].reachTime = 0;
+            os.pro[0].cpuTime = 400;
+            os.pro[0].needTime = os.pro[0].cpuTime;
+            os.pro[0].state = 'R';
+            os.pro[0].queue = 0;
+            os.pro[0].closeTime = 0;
 
-                os.pro[1] = new Progress();
-                os.pro[1].id = 2;
-                os.pro[1].reachTime = 200;
-                os.pro[1].cpuTime = 300;
-                os.pro[1].needTime = os.pro[1].cpuTime;
-                os.pro[1].state = 'R';
-                os.pro[1].queue = 0;
-                os.pro[1].closeTime = 0;
+            os.pro[1] = new Progress();
+            os.pro[1].id = 2;
+            os.pro[1].reachTime = 200;
+            os.pro[1].cpuTime = 300;
+            os.pro[1].needTime = os.pro[1].cpuTime;
+            os.pro[1].state = 'R';
+            os.pro[1].queue = 0;
+            os.pro[1].closeTime = 0;
 
-                os.pro[2] = new Progress();
-                os.pro[2].id = 3;
-                os.pro[2].reachTime = 300;
-                os.pro[2].cpuTime = 200;
-                os.pro[2].needTime = os.pro[2].cpuTime;
-                os.pro[2].state = 'R';
-                os.pro[2].queue = 0;
-                os.pro[2].closeTime = 0;
+            os.pro[2] = new Progress();
+            os.pro[2].id = 3;
+            os.pro[2].reachTime = 300;
+            os.pro[2].cpuTime = 200;
+            os.pro[2].needTime = os.pro[2].cpuTime;
+            os.pro[2].state = 'R';
+            os.pro[2].queue = 0;
+            os.pro[2].closeTime = 0;
 
-                os.pro[3] = new Progress();
-                os.pro[3].id = 4;
-                os.pro[3].reachTime = 400;
-                os.pro[3].cpuTime = 800;
-                os.pro[3].needTime = os.pro[3].cpuTime;
-                os.pro[3].state = 'R';
-                os.pro[3].queue = 0;
-                os.pro[3].closeTime = 0;
+            os.pro[3] = new Progress();
+            os.pro[3].id = 4;
+            os.pro[3].reachTime = 400;
+            os.pro[3].cpuTime = 800;
+            os.pro[3].needTime = os.pro[3].cpuTime;
+            os.pro[3].state = 'R';
+            os.pro[3].queue = 0;
+            os.pro[3].closeTime = 0;
 
-                os.pro[4] = new Progress();
-                os.pro[4].id = 5;
-                os.pro[4].reachTime = 1600;
-                os.pro[4].cpuTime = 300;
-                os.pro[4].needTime = os.pro[4].cpuTime;
-                os.pro[4].state = 'R';
-                os.pro[4].queue = 0;
-                os.pro[4].closeTime = 0;
+            os.pro[4] = new Progress();
+            os.pro[4].id = 5;
+            os.pro[4].reachTime = 1600;
+            os.pro[4].cpuTime = 300;
+            os.pro[4].needTime = os.pro[4].cpuTime;
+            os.pro[4].state = 'R';
+            os.pro[4].queue = 0;
+            os.pro[4].closeTime = 0;
 
-
-
-
-
-            /*debug*/
+            /*//////////////*/
             //os.operator(Integer.parseInt(one.getText()),(Integer.parseInt(two.getText())));
         }
     }
@@ -199,6 +195,7 @@ public class MyMenu extends JMenuBar {
             os.secondQueue = new LinkedList<>();
             os.thirdQueue = new LinkedList<>();
             os.proNum = 5;
+            os.i = 0;
             os.pro = new Progress[os.proNum];
             os.AOO = new ArrayList<Progress>();
             os.myComponent = myComponent;

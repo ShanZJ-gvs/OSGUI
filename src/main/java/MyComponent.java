@@ -11,7 +11,6 @@ public class MyComponent extends JComponent {
 
     MyMenu myMenu;
     public int index;
-    public int slice;
 
     public MyComponent() {
 
@@ -46,8 +45,8 @@ public class MyComponent extends JComponent {
         g2.drawString("p3",30,250);
         g2.drawString("p4",30,300);
         g2.drawString("p5",30,350);
-        paintLine(g2);
         paintTable(g2);
+        paintLine(g2);
 
     }
 
@@ -116,11 +115,31 @@ public class MyComponent extends JComponent {
         if (aoo.size()!=0){
             for (int i = 0; i < this.index; i++) {
 
-                if (i==0){
-                    int x2 = start+aoo.get(i).getCloseTime()/2;
-                    int y = 100+aoo.get(i).getId()*50;
+                if (i/10==0){
+                    int x2 = start+aoo.get(i/10).getCloseTime()/2/10;
+                    int y = 100+aoo.get(i/10).getId()*50;
                     g2.drawLine(start,y,x2,y);
-                    start = start+aoo.get(i).getCloseTime()/2;
+                    start = start+aoo.get(i/10).getCloseTime()/2/10;
+                    //g2.drawString(aoo.get(i).toString(),100,index+350);
+                    //index=index+20;
+                /*g2.drawString(Integer.toString(aoo.get(i).id),110,580+(aoo.get(i).id-1)*50);
+                g2.drawString(Integer.toString(aoo.get(i).reachTime),245,580+(aoo.get(i).id-1)*50);
+                g2.drawString(Integer.toString(aoo.get(i).cpuTime),395,580+(aoo.get(i).id-1)*50);
+                g2.drawString(Integer.toString(aoo.get(i).queue),550,580+(aoo.get(i).id-1)*50);
+                g2.drawString(Integer.toString(aoo.get(i).closeTime),700,580+(aoo.get(i).id-1)*50);*/
+                }else if (i/10==10){
+                    int x2 = start+(aoo.get(i/10-1).getCloseTime()/2-aoo.get(i/10-2).getCloseTime()/2)/10;
+                    int y = 100+aoo.get(i/10).getId()*50;
+                    g2.drawLine(start,y,x2,y);
+                    start = start+(aoo.get(i/100-1).getCloseTime()/2-aoo.get(i/10-2).getCloseTime()/2)/10;
+                }else if(i/10!=0){
+                    int x2 = start+(aoo.get(i/10).getCloseTime()/2-aoo.get(i/10-1).getCloseTime()/2)/10;
+                    int y = 100+aoo.get(i/10).getId()*50;
+                    g2.drawLine(start,y,x2,y);
+                    start = start+(aoo.get(i/10).getCloseTime()/2-aoo.get(i/10-1).getCloseTime()/2)/10;
+                }
+                if (i/10!=0){
+
                     //g2.drawString(aoo.get(i).toString(),100,index+350);
                     //index=index+20;
                 /*g2.drawString(Integer.toString(aoo.get(i).id),110,580+(aoo.get(i).id-1)*50);
@@ -129,20 +148,7 @@ public class MyComponent extends JComponent {
                 g2.drawString(Integer.toString(aoo.get(i).queue),550,580+(aoo.get(i).id-1)*50);
                 g2.drawString(Integer.toString(aoo.get(i).closeTime),700,580+(aoo.get(i).id-1)*50);*/
                 }
-                if (i!=0){
-                    int a = i-1;
-                    int x2 = start+aoo.get(i).getCloseTime()/2-aoo.get(a).getCloseTime()/2;
-                    int y = 100+aoo.get(i).getId()*50;
-                    g2.drawLine(start,y,x2,y);
-                    start =  start+aoo.get(i).getCloseTime()/2-aoo.get(a).getCloseTime()/2;
-                    //g2.drawString(aoo.get(i).toString(),100,index+350);
-                    //index=index+20;
-                /*g2.drawString(Integer.toString(aoo.get(i).id),110,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).reachTime),245,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).cpuTime),395,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).queue),550,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).closeTime),700,580+(aoo.get(i).id-1)*50);*/
-                }
+
 
             }
         }

@@ -174,15 +174,14 @@ public class OS{
                 }
             }
         }
-        for(int i = 0; i <= AOO.size();i++) {
+        for(int i = 0; i <AOO.size()*10;i++) {
             myComponent.index = i;
-            myComponent.slice = i/10;
 
             System.out.println("hello"+i);
             myComponent.paintComponent(myComponent.getGraphics());
             try {
                 System.out.println("hello1");
-                Thread.sleep(300);
+                Thread.sleep(100);
                 System.out.println("hello2");
             } catch (InterruptedException e) {
                 e.printStackTrace();
