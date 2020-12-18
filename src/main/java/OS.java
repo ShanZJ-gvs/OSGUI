@@ -18,9 +18,11 @@ public class OS{
     static int thirdTime;  //第三队列cpu时间片
     static int proNum;     //进程数量
     static Progress[] pro;//获取到进程数组
+    static Progress[] pro2 = new Progress[]{new Progress(),new Progress(),new Progress(),new Progress(),new Progress()};//进程数组2
     static int i = 0;
     static ArrayList<Progress> AOO;
     static MyComponent myComponent;
+
 
 
 
@@ -91,7 +93,17 @@ public class OS{
                     if(firstTime == 0) {
                         firstQueue.peek().state = 'R';
                         AOO.add(new Progress(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
-                                firstQueue.peek().needTime,firstQueue.peek().state,2,currentTime));
+                                firstQueue.peek().needTime,firstQueue.peek().state,1,currentTime));
+                        pro2[firstQueue.peek().id-1].queue= 1;
+
+                        myComponent.paintComponent(myComponent.getGraphics());
+                        /*try {
+                            System.out.println("hello1");
+                            Thread.sleep(1000);
+                            System.out.println("hello2");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }*/
                         secondQueue.offer(firstQueue.poll());
                         firstTime = firstCpu;
                     }
@@ -103,6 +115,15 @@ public class OS{
                     System.out.printf("\n当前时刻：%d,此进程运行结束：\n",currentTime);
                     AOO.add(new Progress(firstQueue.peek().id,firstQueue.peek().reachTime,firstQueue.peek().cpuTime,
                             firstQueue.peek().needTime,firstQueue.peek().state,1,currentTime));
+                    pro2[firstQueue.peek().id-1].queue= 1;
+                    myComponent.paintComponent(myComponent.getGraphics());
+                    /*try {
+                        System.out.println("hello1");
+                        Thread.sleep(1000);
+                        System.out.println("hello2");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }*/
                     System.out.println(firstQueue.peek());
                     Objects.requireNonNull(firstQueue.poll());
                     firstTime = firstCpu;
@@ -125,6 +146,15 @@ public class OS{
                     System.out.printf("\n当前时刻：%d,此进程运行结束：\n",currentTime);
                     AOO.add(new Progress(secondQueue.peek().id,secondQueue.peek().reachTime,secondQueue.peek().cpuTime,
                             secondQueue.peek().needTime,secondQueue.peek().state,2,currentTime));
+                    pro2[secondQueue.peek().id-1].queue= 2;
+                    myComponent.paintComponent(myComponent.getGraphics());
+                    /*try {
+                        System.out.println("hello1");
+                        Thread.sleep(1000);
+                        System.out.println("hello2");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }*/
                     System.out.println(secondQueue.peek());
                     Objects.requireNonNull(secondQueue.poll());
                 }
@@ -135,7 +165,16 @@ public class OS{
                     if(secondTime == 0) {
                         secondQueue.peek().state = 'R';
                         AOO.add(new Progress(secondQueue.peek().id,secondQueue.peek().reachTime,secondQueue.peek().cpuTime,
-                                secondQueue.peek().needTime,secondQueue.peek().state,3,currentTime));
+                                secondQueue.peek().needTime,secondQueue.peek().state,2,currentTime));
+                        pro2[secondQueue.peek().id-1].queue= 2;
+                        myComponent.paintComponent(myComponent.getGraphics());
+                        /*try {
+                            System.out.println("hello1");
+                            Thread.sleep(1000);
+                            System.out.println("hello2");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }*/
                         thirdQueue.offer(secondQueue.poll());
                         secondTime = secondCpu;
                     }
@@ -158,6 +197,15 @@ public class OS{
                         thirdQueue.peek().state = 'R';
                         AOO.add(new Progress(thirdQueue.peek().id,thirdQueue.peek().reachTime,thirdQueue.peek().cpuTime,
                                 thirdQueue.peek().needTime,thirdQueue.peek().state,3,currentTime));
+                        pro2[thirdQueue.peek().id-1].queue= 3;
+                        myComponent.paintComponent(myComponent.getGraphics());
+                        /*try {
+                            System.out.println("hello1");
+                            Thread.sleep(1000);
+                            System.out.println("hello2");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }*/
                         thirdQueue.offer(thirdQueue.poll());
                         thirdTime = thirdCpu;
                     }
@@ -169,24 +217,34 @@ public class OS{
                     System.out.printf("\n当前时刻：%d,此进程运行结束：\n",currentTime);
                     AOO.add(new Progress(thirdQueue.peek().id,thirdQueue.peek().reachTime,thirdQueue.peek().cpuTime,
                             thirdQueue.peek().needTime,thirdQueue.peek().state,3,currentTime));
+                    pro2[thirdQueue.peek().id-1].queue= 3;
+                    myComponent.paintComponent(myComponent.getGraphics());
+                    /*try {
+                        System.out.println("hello1");
+                        Thread.sleep(1000);
+                        System.out.println("hello2");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }*/
                     System.out.println(thirdQueue.peek());
                     Objects.requireNonNull(thirdQueue.poll());
                 }
             }
+            System.out.println("num:"+num);
         }
-        for(int i = 0; i <AOO.size()*10;i++) {
+        /*for(int i = 0; i <AOO.size()*10;i++) {
             myComponent.index = i;
 
             System.out.println("hello"+i);
-            myComponent.paintComponent(myComponent.getGraphics());
+            *//*myComponent.paintComponent(myComponent.getGraphics());
             try {
                 System.out.println("hello1");
                 Thread.sleep(100);
                 System.out.println("hello2");
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-        }
+            }*//*
+        }*/
         System.out.print(AOO.size());
         System.out.println(AOO);
     }

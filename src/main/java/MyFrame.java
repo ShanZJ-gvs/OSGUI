@@ -12,10 +12,11 @@ public class MyFrame extends JFrame {
         MyMenu myMenu = new MyMenu();
         MyComponent myComponent = new MyComponent();
         myMenu.myComponent = myComponent;
-        setJMenuBar(myMenu);
+
 
         myComponent.myMenu = myMenu;
-
+        myComponent.os = myMenu.os;
+        setJMenuBar(myMenu);
         add(myComponent);
         pack();
     }
