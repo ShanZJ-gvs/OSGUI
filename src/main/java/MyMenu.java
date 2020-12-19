@@ -92,8 +92,8 @@ public class MyMenu extends JMenuBar {
         public void actionPerformed(ActionEvent event)
         {
 
-            /*///////*/
-
+            /********以下注释的是用来测试使用的死数据*******/
+/*
             os.pro[0] = new Progress();
             os.pro[0].id = 1;
             os.pro[0].reachTime = 0;
@@ -137,10 +137,10 @@ public class MyMenu extends JMenuBar {
             os.pro[4].needTime = os.pro[4].cpuTime;
             os.pro[4].state = 'R';
             os.pro[4].queue = 0;
-            os.pro[4].closeTime = 0;
+            os.pro[4].closeTime = 0;*/
 
-            /*//////////////*/
-            //os.operator(Integer.parseInt(one.getText()),(Integer.parseInt(two.getText())));
+            /*********************************/
+            os.operator(Integer.parseInt(one.getText()),(Integer.parseInt(two.getText())));
         }
     }
 
