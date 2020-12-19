@@ -1,11 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Objects;
 
 public class MyComponent extends JComponent {
 
@@ -13,9 +8,7 @@ public class MyComponent extends JComponent {
     public int index;
     static OS os;
 
-
     public MyComponent() {
-
         System.out.println(11111);
     }
 
@@ -27,7 +20,7 @@ public class MyComponent extends JComponent {
         System.out.println(2222);
         g2.setStroke(new BasicStroke(2.0f));
         /*****************************/
-        //第一个点
+        //定点
         int start =50;
         int end = 100;
         for (int i = 0; i < 20; i++) {
@@ -52,7 +45,7 @@ public class MyComponent extends JComponent {
 
     }
 
-    //画表格(只有框架和表头)
+    //画表格
     public void paintTable(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setFont(new Font("宋体", Font.BOLD,18));
@@ -75,7 +68,6 @@ public class MyComponent extends JComponent {
         ArrayList<Progress> aoo = myMenu.getOs().AOO;
         int[] ints = new int[]{0,0,0,0,0,0};
         for (Progress i : aoo) {
-            System.out.println(i);
             if (ints[i.id] < i.closeTime){
                 ints[i.id] = i.closeTime;
             }
@@ -96,31 +88,22 @@ public class MyComponent extends JComponent {
                 g2.drawString(String.valueOf(os.pro2[aoo.get(i).id-1].queue),550,580+(aoo.get(i).id-1)*50);
                 g2.drawString(String.valueOf(ints[aoo.get(i).id]),700,580+(aoo.get(i).id-1)*50);
             }
-
         }
 
     }
 
 
-
-
     public void paintLine(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        System.out.println("paintLine:方法开始执行了");
         g2.setStroke(new BasicStroke(2.0f));
-        //第一个点
+
         int start =50;
-        int end = 50;
-        int index = 100;
 
         ArrayList<Progress> aoo = myMenu.getOs().AOO;
         if (aoo.size()!=0){
             for (int i = 0; i < aoo.size()*50; i++) {
                 try {
-                    System.out.println("hello1");
-                    System.out.println("aoo.size:"+aoo.size()*50+"  i: "+i);
                     Thread.sleep(10);
-                    System.out.println("hello2");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -129,13 +112,7 @@ public class MyComponent extends JComponent {
                     int y = 100+aoo.get(i/50).getId()*50;
                     g2.drawLine(start,y,x2,y);
                     start = start+aoo.get(i/50).getCloseTime()/2/50;
-                    //g2.drawString(aoo.get(i).toString(),100,index+350);
-                    //index=index+20;
-                /*g2.drawString(Integer.toString(aoo.get(i).id),110,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).reachTime),245,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).cpuTime),395,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).queue),550,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).closeTime),700,580+(aoo.get(i).id-1)*50);*/
+
                 }else if(i/50!=0){
                     int x2 = start+(aoo.get(i/50).getCloseTime()/2-aoo.get(i/50-1).getCloseTime()/2)/50;
                     int y = 100+aoo.get(i/50).getId()*50;
@@ -144,24 +121,11 @@ public class MyComponent extends JComponent {
                 }
                 if (i/50==aoo.size()){
                     break;
-                    //g2.drawString(aoo.get(i).toString(),100,index+350);
-                    //index=index+20;
-                /*g2.drawString(Integer.toString(aoo.get(i).id),110,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).reachTime),245,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).cpuTime),395,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).queue),550,580+(aoo.get(i).id-1)*50);
-                g2.drawString(Integer.toString(aoo.get(i).closeTime),700,580+(aoo.get(i).id-1)*50);*/
                 }
-
 
             }
         }
 
-        System.out.println("====paintLine结束");
-
-
     }
-
-
 
 }

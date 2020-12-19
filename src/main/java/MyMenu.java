@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Queue;
+
 
 public class MyMenu extends JMenuBar {
 
@@ -56,15 +56,9 @@ public class MyMenu extends JMenuBar {
         button3.addActionListener(action2);
         add(button3);
 
-        /**
-         * 对应下拉菜单
-         */
-        /*tpyes = new String[]{"进程1","进程2"};
-        jComboBox = new JComboBox(tpyes);
-        add(jComboBox);*/
 
         /**
-         * 对应撤销进程按钮
+         * 清除按钮
          */
         JButton button2 = new JButton("清除");
         button2.setFont(new Font("宋体", Font.BOLD,16));
@@ -185,9 +179,7 @@ public class MyMenu extends JMenuBar {
 
         public void actionPerformed(ActionEvent event)
         {
-            /*for (int i = 0; i < 5; i++) {
-                os.pro[i] = new Progress();
-            }*/
+
             os.firstTime = 200;
             os.secondTime = 400;
             os.thirdTime = 800;
@@ -204,8 +196,6 @@ public class MyMenu extends JMenuBar {
         }
 
     }
-
-
 
 
 }

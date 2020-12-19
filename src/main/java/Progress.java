@@ -7,17 +7,6 @@ public class Progress implements Comparable<Progress>{
     int queue;   //当前队列
     int closeTime;  //完成时间
 
-
-
-
-
-    @Override
-    public String toString() {
-        System.out.println();
-        return String.format("进程%s: %10d %7d %8d %7c %7d %8d\n", id, reachTime, cpuTime, needTime, state,queue,closeTime);
-    }
-
-
     @Override
     public int compareTo( Progress b ) {
         //按reachTime从小到大排序
@@ -41,55 +30,9 @@ public class Progress implements Comparable<Progress>{
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getReachTime() {
-        return reachTime;
-    }
-
-    public void setReachTime(int reachTime) {
-        this.reachTime = reachTime;
-    }
-
-    public int getCpuTime() {
-        return cpuTime;
-    }
-
-    public void setCpuTime(int cpuTime) {
-        this.cpuTime = cpuTime;
-    }
-
-    public int getNeedTime() {
-        return needTime;
-    }
-
-    public void setNeedTime(int needTime) {
-        this.needTime = needTime;
-    }
-
-    public char getState() {
-        return state;
-    }
-
-    public void setState(char state) {
-        this.state = state;
-    }
-
-    public int getQueue() {
-        return queue;
-    }
-
-    public void setQueue(int queue) {
-        this.queue = queue;
-    }
-
     public int getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(int closeTime) {
-        this.closeTime = closeTime;
-    }
+
 }

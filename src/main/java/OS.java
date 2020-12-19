@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.*;
 
 /**
@@ -24,34 +23,6 @@ public class OS{
     static MyComponent myComponent;
 
 
-
-
-    /**
-     * 内部进程类：模拟进程
-     */
-/*    final static class Progress implements Comparable<Progress> {
-        String id;     //进程标识符
-        int reachTime; //到达时间
-        int cpuTime;   //运行时间
-        int needTime;  //仍需时间
-        char state;    //进程状态
-
-        *//*重排输出格式*//*
-        @Override
-        public String toString() {
-            System.out.println();
-            return String.format("进程%s: %10d %7d %8d %7c\n", id, reachTime, cpuTime, needTime, state);
-        }
-
-        *//*重写比较器*//*
-        @Override
-        public int compareTo( Progress b ) {
-            //按reachTime从小到大排序
-            return Float.compare(reachTime, b.reachTime);
-        }
-    }*/
-
-
     /**
      * 重新绘画
      */
@@ -68,14 +39,12 @@ public class OS{
         int thirdCpu = thirdTime;
         int currentTime = 0;
         int num = 0;
-        //System.out.println(Arrays.toString(pro));
+
         /*当有进程未运行时或进程队列不为空时，以每1时间片为单位*/
         while(num < proNum || !firstQueue.isEmpty() || !secondQueue.isEmpty() || !thirdQueue.isEmpty()){
             /*当前时刻有进程到达，则添加入第一队列*/
             while(num < proNum && pro[num].reachTime == currentTime)
                 firstQueue.offer(pro[num++]);
-            //打印上一秒各队列进程状态
-            viewMenu(currentTime);
             /*当前为队列1在运行进程*/
             if(!firstQueue.isEmpty()){
                 if (secondQueue.peek() != null) secondQueue.peek().state = 'R';
@@ -97,13 +66,6 @@ public class OS{
                         pro2[firstQueue.peek().id-1].queue= 1;
 
                         myComponent.paintComponent(myComponent.getGraphics());
-                        /*try {
-                            System.out.println("hello1");
-                            Thread.sleep(1000);
-                            System.out.println("hello2");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
                         secondQueue.offer(firstQueue.poll());
                         firstTime = firstCpu;
                     }
@@ -117,13 +79,6 @@ public class OS{
                             firstQueue.peek().needTime,firstQueue.peek().state,1,currentTime));
                     pro2[firstQueue.peek().id-1].queue= 1;
                     myComponent.paintComponent(myComponent.getGraphics());
-                    /*try {
-                        System.out.println("hello1");
-                        Thread.sleep(1000);
-                        System.out.println("hello2");
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }*/
                     System.out.println(firstQueue.peek());
                     Objects.requireNonNull(firstQueue.poll());
                     firstTime = firstCpu;
@@ -148,13 +103,6 @@ public class OS{
                             secondQueue.peek().needTime,secondQueue.peek().state,2,currentTime));
                     pro2[secondQueue.peek().id-1].queue= 2;
                     myComponent.paintComponent(myComponent.getGraphics());
-                    /*try {
-                        System.out.println("hello1");
-                        Thread.sleep(1000);
-                        System.out.println("hello2");
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }*/
                     System.out.println(secondQueue.peek());
                     Objects.requireNonNull(secondQueue.poll());
                 }
@@ -168,13 +116,6 @@ public class OS{
                                 secondQueue.peek().needTime,secondQueue.peek().state,2,currentTime));
                         pro2[secondQueue.peek().id-1].queue= 2;
                         myComponent.paintComponent(myComponent.getGraphics());
-                        /*try {
-                            System.out.println("hello1");
-                            Thread.sleep(1000);
-                            System.out.println("hello2");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
                         thirdQueue.offer(secondQueue.poll());
                         secondTime = secondCpu;
                     }
@@ -199,13 +140,6 @@ public class OS{
                                 thirdQueue.peek().needTime,thirdQueue.peek().state,3,currentTime));
                         pro2[thirdQueue.peek().id-1].queue= 3;
                         myComponent.paintComponent(myComponent.getGraphics());
-                        /*try {
-                            System.out.println("hello1");
-                            Thread.sleep(1000);
-                            System.out.println("hello2");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
                         thirdQueue.offer(thirdQueue.poll());
                         thirdTime = thirdCpu;
                     }
@@ -219,101 +153,31 @@ public class OS{
                             thirdQueue.peek().needTime,thirdQueue.peek().state,3,currentTime));
                     pro2[thirdQueue.peek().id-1].queue= 3;
                     myComponent.paintComponent(myComponent.getGraphics());
-                    /*try {
-                        System.out.println("hello1");
-                        Thread.sleep(1000);
-                        System.out.println("hello2");
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }*/
                     System.out.println(thirdQueue.peek());
                     Objects.requireNonNull(thirdQueue.poll());
                 }
             }
             System.out.println("num:"+num);
         }
-        /*for(int i = 0; i <AOO.size()*10;i++) {
-            myComponent.index = i;
 
-            System.out.println("hello"+i);
-            *//*myComponent.paintComponent(myComponent.getGraphics());
-            try {
-                System.out.println("hello1");
-                Thread.sleep(100);
-                System.out.println("hello2");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*//*
-        }*/
-        System.out.print(AOO.size());
-        System.out.println(AOO);
     }
 
     /**
      * 输入面板：获取到进程数组
      */
     static Progress[] operator(int a,int b){
-        System.out.println("-----------------3118004950 柴政-----------------\n");
-        System.out.println("欢迎进入多级队列反馈调度模拟系统，队列个数：3。\n\n");
-        System.out.println("请按队列优先级从高到低的顺序输入各个队列的时间片长度：");
-        /*firstTime = sc.nextInt();
-        secondTime = sc.nextInt();
-        thirdTime = sc.nextInt();*/
-        System.out.print( "请输入进程数:" );
-        /*proNum = sc.nextInt();*/
 
         /*获取到进程数组*/
-        //pro = new Progress[proNum];
-        System.out.println( "请依次输入进程标识符,进程到达时间,进程运行时间:" );
-        //for( int i = 0; i < proNum; i++ ) {
-            pro[i] = new Progress();
-            pro[i].id = i+1;
-            pro[i].reachTime = a;
-            pro[i].cpuTime = b;
-            pro[i].needTime = pro[i].cpuTime;
-            pro[i].state = 'R';
-            pro[i].queue = 0;
-            pro[i].closeTime = 0;
-
-            i++;
-        //}
-        //对进程按照compareTo()的要求按照到达时间排序
-        //Arrays.sort(pro);
+        pro[i] = new Progress();
+        pro[i].id = i+1;
+        pro[i].reachTime = a;
+        pro[i].cpuTime = b;
+        pro[i].needTime = pro[i].cpuTime;
+        pro[i].state = 'R';
+        pro[i].queue = 0;
+        pro[i].closeTime = 0;
+        i++;
         return pro;
-    }
-    /**
-     * 输出面板：实时输出运行结果
-     */
-    private static void viewMenu(int currentTime){
-        System.out.printf("\n当前时刻：%d\n",currentTime);
-        System.out.println("---------------------------------------------");
-        System.out.println("            到达时间 运行时间  剩余时间  状态");
-        if(firstQueue.isEmpty()) System.out.println("队列一：空");
-        else {
-            String str = "队列一：\n"+ firstQueue.toString()
-                    .replace("[", "").replace("]", "")
-                    .replace(", ", "");
-            System.out.println(str);
-
-
-
-
-        }
-        if(secondQueue.isEmpty()) System.out.println("队列二：空");
-        else {
-            System.out.println("队列二：\n"+ secondQueue.toString()
-                    .replace("[", "").replace("]", "")
-                    .replace(", ", ""));
-
-        }
-
-        if(thirdQueue.isEmpty()) System.out.println("队列三：空");
-        else {
-            System.out.println("队列三：\n"+ thirdQueue.toString()
-                    .replace("[", "").replace("]", "")
-                    .replace(", ", ""));
-        }
-        System.out.println("=============================================");
     }
 
 
